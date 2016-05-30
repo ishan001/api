@@ -15,6 +15,9 @@ $app->get('/', function () use ($app) {
     return $app->version();
 });
 
+$app->get('/data', 'ExampleController@show');
+
+
 $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', function ($api) {
     $api->get('city', 'App\Api\Controllers\CityController@show');
