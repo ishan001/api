@@ -19800,9 +19800,13 @@ class ExampleController extends Controller
 
             if($make)
             {
-                $model = new CarModel;
-                $model->model =  $row['model'];
-                $make->CarModels()->save($model);
+                $model = CarModel::where('car_make_id', $make->id)->where('model',$row['model'])->first();
+                if(!$model)
+                {
+                    $model = new CarModel;
+                    $model->model =  $row['model'];
+                    $make->CarModels()->save($model);
+                }
             }
             else
             {
