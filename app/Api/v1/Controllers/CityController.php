@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Api\Controllers;
+namespace App\Api\v1\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Dingo\Api\Routing\Helpers;
 use Illuminate\Routing\Controller;
-Use App\City;
+Use App\Api\v1\Models\City;
 
 class CityController extends Controller
 {

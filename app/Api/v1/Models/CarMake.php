@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Api\v1\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,6 +13,6 @@ class CarMake extends Model
      */
     public function CarModels()
     {
-        return $this->hasMany('App\CarModel');
+        return $this->hasMany('App\Api\v1\Models\CarModel');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Api\v1\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -11,6 +11,6 @@ class CategoryLevelThree extends Model
      */
     public function levelTwo()
     {
-        return $this->belongsTo('App\CategoryLevelTwo');
+        return $this->belongsTo('App\Api\v1\Models\CategoryLevelTwo');
     }
 }
