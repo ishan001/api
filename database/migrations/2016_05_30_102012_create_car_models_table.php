@@ -21,6 +21,8 @@ class CreateCarModelsTable extends Migration
             $table->foreign('car_make_id')
                 ->references('id')->on('car_makes')
                 ->onDelete('cascade');
+
+            $table->index('id', 'car_make_id');
         });
     }
 

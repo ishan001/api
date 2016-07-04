@@ -11,14 +11,28 @@
 |
 */
 
+/* for rendering documentation */
 $app->get('/', function () use ($app) {
     return $app->version();
 });
 
-$app->get('/data', 'ExampleController@show');
-
 
 $api = app('Dingo\Api\Routing\Router');
-$api->version('v1', function ($api) {
-    $api->get('city', 'App\Api\Controllers\CityController@show');
+
+// JWT Protected routes
+$api->version('v1', ['middleware' => 'api.auth', 'providers' => 'jwt'], function ($api) {
+    $api->get('/index', 'App\Http\Controllers\BackendController@index');
+});
+
+// Publicly accessible routes
+$api->version(['v1', 'v2'], [], function ($api) {
+    /**
+     * VERSION 1 routes
+     */
+    $api->group(['prefix' => 'v1'], function ($api) {
+        $api->get('/cities', 'App\Api\v1\Controllers\CommonController@showCitites');
+        $api->get('/car-makes', 'App\Api\v1\Controllers\CommonController@showCarMakes');
+        $api->get('/car-models/{make}', 'App\Api\v1\Controllers\CommonController@showCarModels');
+    });
+
 });

@@ -13,12 +13,13 @@ class CreateCategoryLevelOnesTable extends Migration
     public function up()
     {
         Schema::create('category_level_ones', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->index();;
             $table->string('name');
             $table->timestamps();
         });
     }
 
+    
     /**
      * Reverse the migrations.
      *

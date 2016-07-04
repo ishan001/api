@@ -13,7 +13,7 @@ class CreateCarMakesTable extends Migration
     public function up()
     {
         Schema::create('car_makes', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->index();
             $table->string('make');
             $table->timestamps();
         });

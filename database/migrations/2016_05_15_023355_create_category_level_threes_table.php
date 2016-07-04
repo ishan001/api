@@ -21,6 +21,7 @@ class CreateCategoryLevelThreesTable extends Migration
             $table->foreign('category_level_two_id')
                 ->references('id')->on('category_level_twos')
                 ->onDelete('cascade');
+            $table->index('id', 'category_level_two_id');
         });
     }
 
