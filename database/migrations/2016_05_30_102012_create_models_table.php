@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCarModelsTable extends Migration
+class CreateModelsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,17 +12,17 @@ class CreateCarModelsTable extends Migration
      */
     public function up()
     {
-        Schema::create('car_models', function (Blueprint $table) {
+        Schema::create('models', function (Blueprint $table) {
             $table->increments('id');
             $table->string('model');
-            $table->integer('car_make_id')->unsigned();
+            $table->integer('make_id')->unsigned();
             $table->timestamps();
 
-            $table->foreign('car_make_id')
-                ->references('id')->on('car_makes')
+            $table->foreign('make_id')
+                ->references('id')->on('makes')
                 ->onDelete('cascade');
 
-            $table->index('id', 'car_make_id');
+            $table->index('id', 'make_id');
         });
     }
 
@@ -33,6 +33,6 @@ class CreateCarModelsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('car_models');
+        Schema::drop('models');
     }
 }

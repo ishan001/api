@@ -24,15 +24,18 @@ $api->version('v1', ['middleware' => 'api.auth', 'providers' => 'jwt'], function
     $api->get('/index', 'App\Http\Controllers\BackendController@index');
 });
 
+$controller_path = 'App\Api\v1\Controllers';
 // Publicly accessible routes
-$api->version(['v1', 'v2'], [], function ($api) {
+$api->version(['v1', 'v2'], [], function ($api) use ($controller_path) {
     /**
      * VERSION 1 routes
      */
-    $api->group(['prefix' => 'v1'], function ($api) {
-        $api->get('/cities', 'App\Api\v1\Controllers\CommonController@showCitites');
-        $api->get('/car-makes', 'App\Api\v1\Controllers\CommonController@showCarMakes');
-        $api->get('/car-models/{make}', 'App\Api\v1\Controllers\CommonController@showCarModels');
+    $api->group(['prefix' => 'v1'], function ($api) use($controller_path) {
+        $api->get('/cities', $controller_path.'\CommonController@showCities');
+        $api->get('/car-makes', $controller_path.'\CommonController@showCarMakes');
+        $api->get('/car-models/{make}', $controller_path.'\CommonController@showCarModels');
+        $api->get('/features', $controller_path.'\CommonController@showFeatures');
+
     });
 
 });

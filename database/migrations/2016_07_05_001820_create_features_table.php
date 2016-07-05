@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoryLevelOnesTable extends Migration
+class CreateFeaturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,14 +12,13 @@ class CreateCategoryLevelOnesTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_level_ones', function (Blueprint $table) {
-            $table->increments('id')->index();;
+        Schema::create('features', function (Blueprint $table) {
+            $table->increments('id')->index();
             $table->string('name');
             $table->timestamps();
         });
     }
 
-    
     /**
      * Reverse the migrations.
      *
@@ -27,6 +26,6 @@ class CreateCategoryLevelOnesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('category_level_ones');
+        Schema::drop('features');
     }
 }

@@ -3,6 +3,9 @@
 namespace App\Api\v1\Controllers;
 
 use App\Api\v1\Models\CarModel;
+use App\Api\v1\Models\CategoryLevelOne;
+use App\Api\v1\Models\CategoryLevelTwo;
+use App\Api\v1\Models\Features;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Dingo\Api\Routing\Helpers;
@@ -13,17 +16,18 @@ class CommonController extends RestController
 {
 
     use Helpers;
+
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
-    public function showCitites()
+    public function showCities()
     {
         $cities = City::all();
-        if($cities->count()){
+        if ($cities->count()) {
             $ret = $this->showResponse($cities);
-        }else{
+        } else {
             $error = 'No Cities available!';
             $ret = $this->errorResponse($error);
         }
@@ -31,12 +35,16 @@ class CommonController extends RestController
         return $ret;
     }
 
+    /**
+     * show all vehicle makes
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function showCarMakes()
     {
         $makes = CarMake::all();
-        if($makes->count()){
+        if ($makes->count()) {
             $ret = $this->showResponse($makes);
-        }else{
+        } else {
             $error = 'No Car Makes available!';
             $ret = $this->errorResponse($error);
         }
@@ -44,13 +52,32 @@ class CommonController extends RestController
         return $ret;
     }
 
+    /**
+     * show all vehicle models according to make
+     * @param $make
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function showCarModels($make)
     {
-        $models = CarModel::where('car_make_id',$make)->get();
-        if($models->count()){
+        $models = CarMake::find($make)->CarModels;
+        if ($models->count()) {
             $ret = $this->showResponse($models);
-        }else{
+        } else {
             $error = 'No Car models available for this make';
+            $ret = $this->errorResponse($error);
+        }
+
+        return $ret;
+    }
+
+    public function showFeatures()
+    {
+        $features = Features::all();
+
+        if ($features->count()) {
+            $ret = $this->showResponse($features);
+        } else {
+            $error = 'No Features available for this categories!';
             $ret = $this->errorResponse($error);
         }
 
