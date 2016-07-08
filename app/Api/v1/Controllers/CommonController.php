@@ -2,15 +2,14 @@
 
 namespace App\Api\v1\Controllers;
 
-use App\Api\v1\Models\CarModel;
-use App\Api\v1\Models\CategoryLevelOne;
-use App\Api\v1\Models\CategoryLevelTwo;
+use App\Api\v1\Models\MakeModel;
+Use App\Api\v1\Models\City;
+Use App\Api\v1\Models\Make;
 use App\Api\v1\Models\Features;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Dingo\Api\Routing\Helpers;
-Use App\Api\v1\Models\City;
-Use App\Api\v1\Models\CarMake;
+
 
 class CommonController extends RestController
 {
@@ -18,7 +17,7 @@ class CommonController extends RestController
     use Helpers;
 
     /**
-     * Show the application dashboard.
+     * Show all the cities.
      *
      * @return \Illuminate\Http\Response
      */
@@ -39,9 +38,9 @@ class CommonController extends RestController
      * show all vehicle makes
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showCarMakes()
+    public function showMakes()
     {
-        $makes = CarMake::all();
+        $makes = Make::all();
         if ($makes->count()) {
             $ret = $this->showResponse($makes);
         } else {
@@ -57,9 +56,9 @@ class CommonController extends RestController
      * @param $make
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showCarModels($make)
+    public function showModels($make)
     {
-        $models = CarMake::find($make)->CarModels;
+        $models = Make::find($make)->MakeModels;
         if ($models->count()) {
             $ret = $this->showResponse($models);
         } else {

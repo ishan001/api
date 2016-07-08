@@ -14,6 +14,7 @@ class CreateCarsTable extends Migration
     {
         Schema::create('cars', function (Blueprint $table) {
             $table->increments('id');
+            $table->increments('user_id')->unsigned();
             $table->integer('make_id')->unsigned();
             $table->integer('model_id')->unsigned();
             $table->string('model_details');
@@ -30,7 +31,7 @@ class CreateCarsTable extends Migration
             $table->enum('4wd', ['yes', 'no']);
             $table->string('owners',50);
             $table->string('import_history',50);
-            $table->string('registration_expire ',50);
+            $table->string('registration_expire',50);
             $table->string('wof_expire',50);
             $table->enum('registered', ['yes', 'no']);
             $table->string('number_plate',20);
@@ -41,6 +42,9 @@ class CreateCarsTable extends Migration
 
             $table->timestamps();
 
+            $table->foreign('user_id')
+                ->references('id')->on('makes')
+                ->onDelete('cascade');
             $table->foreign('make_id')
                 ->references('id')->on('makes')
                 ->onDelete('cascade');
@@ -57,7 +61,7 @@ class CreateCarsTable extends Migration
                 ->references('id')->on('transmissions')
                 ->onDelete('cascade');
 
-            $table->index('id', 'make_id', 'model_id','body_type_id','fuel_type_id','transmission_id');
+            $table->index('id', 'user_id', 'make_id', 'model_id','body_type_id','fuel_type_id','transmission_id');
 
         });
     }

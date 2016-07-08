@@ -6,6 +6,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Car extends Model
 {
+    protected $fillable = ['make_id',
+        'model_id',
+        'model_details',
+        'year',
+        'odometer',
+        'exterior_colour',
+        'interior_colour',
+        'cylinders',
+        'engine_size',
+        'owners',
+        'import_history',
+        'registration_expire',
+        'wof_expire',
+        'number_plate',
+        'post_code',
+        'suburb',
+        'description',
+    ];
+
     /**
      * Car make
      *
@@ -63,5 +82,15 @@ class Car extends Model
     public function FuelType()
     {
         return $this->hasOne('App\Api\v1\Models\FuelType');
+    }
+
+    /**
+     * Car images
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function Images()
+    {
+        return $this->hasMany('App\Api\v1\Models\Image');
     }
 }

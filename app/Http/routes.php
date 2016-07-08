@@ -32,9 +32,14 @@ $api->version(['v1', 'v2'], [], function ($api) use ($controller_path) {
      */
     $api->group(['prefix' => 'v1'], function ($api) use($controller_path) {
         $api->get('/cities', $controller_path.'\CommonController@showCities');
-        $api->get('/car-makes', $controller_path.'\CommonController@showCarMakes');
-        $api->get('/car-models/{make}', $controller_path.'\CommonController@showCarModels');
+        $api->get('/makes', $controller_path.'\CommonController@showMakes');
+        $api->get('/models/{make}', $controller_path.'\CommonController@showModels');
         $api->get('/features', $controller_path.'\CommonController@showFeatures');
+
+        $api->group(['prefix' => 'car'], function ($api) use($controller_path) {
+            $api->get('/makes', $controller_path.'\CarController@showMakes');
+        });
+
 
     });
 

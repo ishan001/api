@@ -19,7 +19,7 @@ class CreateCarFeatureTable extends Migration
             $table->integer('feature_id')->unsigned();
 
             $table->foreign('car_id')->references('id')->on('cars')->onDelete('cascade');
-            $table->foreign('feature_id')->references('id')->on('feature')->onDelete('cascade');
+            $table->foreign('feature_id')->references('id')->on('features')->onDelete('cascade');
         });
     }
 

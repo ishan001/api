@@ -4,8 +4,10 @@ namespace App\Api\v1\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CarModel extends Model
+class MakeModel extends Model
 {
+    protected $fillable = ['make'];
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

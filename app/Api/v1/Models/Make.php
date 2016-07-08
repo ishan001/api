@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Make extends Model
 {
+    protected $fillable = ['make'];
     /**
      * Car Make has many car model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function Models()
+    public function MakeModels()
     {
-        return $this->hasMany('App\Api\v1\Models\Model');
+        return $this->hasMany('App\Api\v1\Models\MakeModel');
     }
 
     /**
