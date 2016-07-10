@@ -82,4 +82,16 @@ class CommonController extends RestController
 
         return $ret;
     }
+    public function addData()
+    {
+        $names = ["Don't know",'Manual','Automatic','Tiptronic'];
+        foreach($names as $name){
+            $app =  new \App\Api\v1\Models\Transmission();
+            $app->name = $name;
+            $app->save();
+        }
+
+
+
+    }
 }

@@ -21,40 +21,37 @@ $factory->define(App\User::class, function ($faker) {
 
 $factory->define(App\Api\v1\Models\Car::class, function ($faker) {
 
-    $makes_array = Make::select('id')->get()->toArray();
-
-    list($keys, $values) = array_divide($makes_array['id']);
-    print_r($keys);
-    print_r($values);
-    die();
+    $makes = array_flatten(Make::select('id')->get()->toArray());
     $make = $faker->randomElement($makes);
-
-    $models = Make::find($make)->MakeModels;
-
-    $model = $faker->randomElement($models);
+    $models = array_flatten(Make::find($make)->MakeModels()->select('id')->get()->toArray());
+    if($models){
+        $model = $faker->randomElement($models);
+    } else {
+        $model = 0;
+    }
 
     return [
-        'user_id' => $faker->numberBetween(1,50),
+        'user_id' => $faker->numberBetween(1,100),
         'make_id' => $make,
         'model_id' => $model,
         'model_details' => $faker->sentence,
         'year' => $faker->numberBetween(1990,2015),
-        'odometer' => $faker->numberBetween(0,200000),
-        'price' => $faker->numberBetween(0,20000),
+        'odometer' => $faker->numberBetween(10000,200000),
+        'price' => $faker->numberBetween(1,20000),
         'exterior_colour' => $faker->colorName,
         'interior_colour' => $faker->colorName,
-        'body_type_id' => $faker->numberBetween(0,4),
-        'fuel_type_id' => $faker->numberBetween(0,4),
-        'cylinders' => $faker->words(2),
-        'engine_size' => $faker->words(2),
-        'transmission_id' => $faker->numberBetween(0,4),
-        '4wd' => 'No',
-        'owners' => $faker->words(2),
-        'import_history' => $faker->words(2),
+        'body_type_id' => $faker->numberBetween(1,4),
+        'fuel_type_id' => $faker->numberBetween(1,4),
+        'cylinders' => $faker->sentence(2),
+        'engine_size' => $faker->sentence(2),
+        'transmission_id' => $faker->numberBetween(1,4),
+        '4wd' => 'no',
+        'owners' => $faker->sentence(2),
+        'import_history' => $faker->sentence(2),
         'registration_expire' => $faker->date($format = 'Y-m-d', $startDate = 'now'),
         'wof_expire' => $faker->date($format = 'Y-m-d', $startDate = 'now'),
         'registered' => 'yes',
-        'number_plate' => $faker->realText(6),
+        'number_plate' => $faker->sentence(1),
         'post_code' => $faker->postcode,
         'suburb' => $faker->state,
         'description' => $faker->paragraph ,
