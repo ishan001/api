@@ -37,7 +37,7 @@ class CreateCarsTable extends Migration
             $table->string('number_plate',20);
             $table->enum('aa_report', ['yes', 'no']);
             $table->integer('post_code')->unsigned();
-            $table->string('suburb',50);
+            $table->integer('city_id')->unsigned();
             $table->text('description');
 
             $table->timestamps();
@@ -60,8 +60,11 @@ class CreateCarsTable extends Migration
             $table->foreign('transmission_id')
                 ->references('id')->on('transmissions')
                 ->onDelete('cascade');
+            $table->foreign('city_id')
+                ->references('id')->on('cities')
+                ->onDelete('cascade');
 
-            $table->index('id', 'user_id', 'make_id', 'model_id','body_type_id','fuel_type_id','transmission_id');
+            $table->index('id', 'city_id', 'user_id', 'make_id', 'model_id','body_type_id','fuel_type_id','transmission_id');
 
         });
     }

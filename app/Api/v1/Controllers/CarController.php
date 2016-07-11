@@ -25,8 +25,7 @@ class CarController extends RestController
      */
     public function showMakes()
     {
-        $makes = Car::
-            select(DB::raw('count(*) as make_count, cars.make_id'),'makes.make')
+        $makes = Car::select(DB::raw('count(*) as make_count, cars.make_id'),'makes.make')
             ->join('makes', 'makes.id', '=', 'cars.make_id')
             ->groupBy('cars.make_id')
             ->having('cars.make_id', '>', 0)
@@ -59,5 +58,22 @@ class CarController extends RestController
 
         return $ret;
     }
+    public function showCities()
+    {
+        $cities = Car::select(DB::raw('count(*) as city_count, cars.city_id'),'cities.name')
+            ->join('cities', 'cities.id', '=', 'cars.city_id')
+            ->groupBy('cars.city_id')
+            ->having('cars.city_id', '>', 0)
+            ->orderBy('cities.name')->get();
+        if ($cities->count()) {
+            $ret = $this->showResponse($cities);
+        } else {
+            $error = 'No models available!';
+            $ret = $this->errorResponse($error);
+        }
+
+        return $ret;
+    }
+
 
 }

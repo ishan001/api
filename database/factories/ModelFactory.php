@@ -40,11 +40,11 @@ $factory->define(App\Api\v1\Models\Car::class, function ($faker) {
         'price' => $faker->numberBetween(1,20000),
         'exterior_colour' => $faker->colorName,
         'interior_colour' => $faker->colorName,
-        'body_type_id' => $faker->numberBetween(1,4),
+        'body_type_id' => $faker->numberBetween(1,9),
         'fuel_type_id' => $faker->numberBetween(1,4),
         'cylinders' => $faker->sentence(2),
         'engine_size' => $faker->sentence(2),
-        'transmission_id' => $faker->numberBetween(1,4),
+        'transmission_id' => $faker->numberBetween(1,3),
         '4wd' => 'no',
         'owners' => $faker->sentence(2),
         'import_history' => $faker->sentence(2),
@@ -53,7 +53,7 @@ $factory->define(App\Api\v1\Models\Car::class, function ($faker) {
         'registered' => 'yes',
         'number_plate' => $faker->sentence(1),
         'post_code' => $faker->postcode,
-        'suburb' => $faker->state,
+        'city_id' => $faker->numberBetween(1,17),
         'description' => $faker->paragraph ,
     ];
 });

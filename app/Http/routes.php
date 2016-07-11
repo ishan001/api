@@ -42,6 +42,7 @@ $api->version(['v1', 'v2'], [], function ($api)  {
         $api->group(['prefix' => 'car'], function ($api)  {
             $api->get('/makes', 'CarController@showMakes');
             $api->get('/models/{make}', 'CarController@showModels');
+            $api->get('/cities', 'CarController@showCities');
         });
 
 
