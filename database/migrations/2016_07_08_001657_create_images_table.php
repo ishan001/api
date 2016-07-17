@@ -16,16 +16,15 @@ class CreateImagesTable extends Migration
             $table->increments('id');
             $table->boolean('is_active')->default(false);
             $table->boolean('is_featured')->default(false);
+            $table->boolean('is_primary')->default(false);
             $table->string('image_name')->unique();
             $table->string('image_path');
             $table->string('image_extension', 10);
-            $table->integer('car_id')->unsigned();
+            $table->integer('car_id')->unsigned()->index();
             $table->timestamps();
             $table->foreign('car_id')
                 ->references('id')->on('cars')
                 ->onDelete('cascade');
-
-            $table->index('id', 'car_id');
         });
     }
 

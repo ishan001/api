@@ -58,3 +58,14 @@ $factory->define(App\Api\v1\Models\Car::class, function ($faker) {
     ];
 });
 
+$factory->define(App\Api\v1\Models\Image::class, function ($faker) {
+    $image = $faker->image('/var/www/api/storage/cars', 640,  480,'cars',false);
+    return [
+        'is_active' => 1,
+        'is_featured' => 0,
+        'image_name' => $image,
+        'image_path' => 'cars',
+        'image_extension' => 'jpg',
+        'car_id' => $faker->numberBetween(1,95000)
+    ];
+});

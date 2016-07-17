@@ -8,7 +8,9 @@
         "php": ">=5.5.9",
         "laravel/lumen-framework": "5.2.*",
         "vlucas/phpdotenv": "~2.2",
-        "dingo/api": "1.0.x@dev"
+        "dingo/api": "dev-master",
+        "tymon/jwt-auth": "dev-master#dfd929d",
+        "barryvdh/laravel-cors": "^0.8.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
@@ -23,6 +25,11 @@
         "classmap": [
             "tests/",
             "database/"
+        ]
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "php -r \"copy('.env.example', '.env');\""
         ]
     }
 }

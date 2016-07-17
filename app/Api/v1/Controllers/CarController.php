@@ -3,10 +3,6 @@
 namespace App\Api\v1\Controllers;
 
 use App\Api\v1\Models\Car;
-use App\Api\v1\Models\MakeModel;
-Use App\Api\v1\Models\City;
-Use App\Api\v1\Models\Make;
-use App\Api\v1\Models\Features;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use Dingo\Api\Routing\Helpers;
@@ -39,8 +35,7 @@ class CarController extends RestController
 
         return $ret;
     }
-
-
+    
     public function showModels($make)
     {
         $models = Car::where('cars.make_id',$make)

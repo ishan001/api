@@ -64,7 +64,7 @@ class CreateCarsTable extends Migration
                 ->references('id')->on('cities')
                 ->onDelete('cascade');
 
-            $table->index('id', 'city_id', 'user_id', 'make_id', 'model_id','body_type_id','fuel_type_id','transmission_id');
+            $table->index('city_id', 'user_id', 'make_id', 'model_id','body_type_id','fuel_type_id','transmission_id');
 
         });
     }
