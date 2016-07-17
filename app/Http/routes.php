@@ -25,7 +25,7 @@ $api->version('v1', [], function ($api) {
 
 
 $api->version('v1', ['middleware' => 'sub.auth'], function ($api) {
-    $api->get('/index', 'App\Http\Controllers\BackendController@sub');
+    $api->get('/sub', 'App\Http\Controllers\BackendController@sub');
 });
 
 
