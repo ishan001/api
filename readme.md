@@ -1,21 +1,18 @@
-## Lumen PHP Framework
+## Lumen 5.1/5.2 + Dingo API + JWT Auth
 
-[![Build Status](https://travis-ci.org/laravel/lumen-framework.svg)](https://travis-ci.org/laravel/lumen-framework)
-[![Total Downloads](https://poser.pugx.org/laravel/lumen-framework/d/total.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/lumen-framework/v/stable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/lumen-framework/v/unstable.svg)](https://packagist.org/packages/laravel/lumen-framework)
-[![License](https://poser.pugx.org/laravel/lumen-framework/license.svg)](https://packagist.org/packages/laravel/lumen-framework)
+Working example of Dingo API using JWT Auth to secure endpoints.
+CORS complaint.
+Facades are [disabled](http://programmingarehard.com/2014/01/11/stop-using-facades.html/), Eloquent is enabled.
 
-Laravel Lumen is a stunningly fast PHP micro-framework for building web applications with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Lumen attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as routing, database abstraction, queueing, and caching.
+Easy to clone for a new project or just to get over the obstacles of your own implementation.
 
-## Official Documentation
+#### Install
+1. Create lumendingojwtapi database
+2. php artisan migrate && php arisan db:seed
 
-Documentation for the framework can be found on the [Lumen website](http://lumen.laravel.com/docs).
+#### Versions
+* v1.x.x family is based on Lumen 5.1.x
+* v2.x.x family is based on Lumen 5.2.x
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-### License
-
-The Lumen framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+#### Postman collection
+Assumes: //lumendingojwtapi.local url.

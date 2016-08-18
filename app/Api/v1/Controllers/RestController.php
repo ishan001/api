@@ -7,6 +7,51 @@ use Laravel\Lumen\Routing\Controller as BaseController;
 
 class RestController extends BaseController
 {
+    /**
+     * @var int
+     */
+    protected $statusCode = 200;
+
+    /**
+     * @param $statusCode
+     * @return $this
+     */
+    public function setStatusCode($statusCode)
+    {
+        $this->statusCode = $statusCode;
+
+        return $this;
+    }
+
+    /**
+     * @param string $message
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function responseNotFound($message = 'Not Found!')
+    {
+        return $this->setStatusCode(404)->responseWithError($message);
+    }
+
+    public function responseWithError($message)
+    {
+        $response = [
+            'code' => $this->statusCode,
+            'status' => 'success',
+            'message' => $message
+        ];
+        return response()->json($response, $this->statusCode);
+    }
+    public function responseData($data, $headers =[])
+    {
+        $response = [
+            'code' => $this->statusCode,
+            'status' => 'success',
+            'data' => $data
+        ];
+        return response()->json($response, $this->statusCode,$headers);
+    }
+
+
     protected function createdResponse($data)
     {
         $response = [

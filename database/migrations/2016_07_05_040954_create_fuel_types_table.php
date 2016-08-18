@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoryLevelOnesTable extends Migration
+class CreateFuelTypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class CreateCategoryLevelOnesTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_level_ones', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('fuel_types', function (Blueprint $table) {
+            $table->increments('id')->index();
             $table->string('name');
             $table->timestamps();
         });
@@ -26,6 +26,6 @@ class CreateCategoryLevelOnesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('category_level_ones');
+        Schema::drop('fuel_types');
     }
 }

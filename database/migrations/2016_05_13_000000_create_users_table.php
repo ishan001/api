@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoryLevelThreesTable extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,15 +12,13 @@ class CreateCategoryLevelThreesTable extends Migration
      */
     public function up()
     {
-        Schema::create('category_level_threes', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('category_level_two_id')->unsigned();
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
-
-            $table->foreign('category_level_two_id')
-                ->references('id')->on('category_level_twos')
-                ->onDelete('cascade');
         });
     }
 
@@ -31,6 +29,6 @@ class CreateCategoryLevelThreesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('category_level_threes');
+        Schema::drop('users');
     }
 }

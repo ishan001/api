@@ -27,6 +27,11 @@ $app->withFacades();
 
 $app->withEloquent();
 
+// Register config files
+$app->configure('auth');
+$app->configure('jwt');
+$app->configure('cors');
+
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings
@@ -59,13 +64,20 @@ $app->singleton(
 |
 */
 
-// $app->middleware([
-//    App\Http\Middleware\ExampleMiddleware::class
-// ]);
+ $app->middleware([
+//     // Illuminate\Cookie\Middleware\EncryptCookies::class,
+//     // Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+//     // Illuminate\Session\Middleware\StartSession::class,
+//     // Illuminate\View\Middleware\ShareErrorsFromSession::class,
+//     // Laravel\Lumen\Http\Middleware\VerifyCsrfToken::class,
+     Barryvdh\Cors\HandleCors::class,
+     Barryvdh\Cors\HandlePreflightSimple::class,
 
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+ ]);
+
+ $app->routeMiddleware([
+     'sub.auth' => App\Http\Middleware\SubscriberAuthMiddleware::class,
+ ]);
 
 /*
 |--------------------------------------------------------------------------
@@ -78,11 +90,17 @@ $app->singleton(
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
-// $app->register(App\Providers\AuthServiceProvider::class);
+ $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
 $app->register(Dingo\Api\Provider\LumenServiceProvider::class);
+$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+
+app('Dingo\Api\Auth\Auth')->extend('jwt', function ($app) {
+    return new Dingo\Api\Auth\Provider\JWT($app['Tymon\JWTAuth\JWTAuth']);
+});
+
+$app->register(Barryvdh\Cors\LumenServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

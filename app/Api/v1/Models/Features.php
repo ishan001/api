@@ -4,7 +4,7 @@ namespace App\Api\v1\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class City extends Model
+class Features extends Model
 {
     protected $fillable = ['name'];
 }
