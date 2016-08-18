@@ -47,7 +47,9 @@ $api->version(['v1', 'v2'], [], function ($api)  {
             $api->get('/models/{make}', 'CarController@showModels');
             $api->get('/cities', 'CarController@showCities');
         });
-
+        
+        $api->post('/search', 'SearchController@result');
+        $api->post('/advance-search', 'SearchController@advanceResult');
 
     });
 

@@ -17,23 +17,19 @@ class SubscriberAuthMiddleware
      */
     public function handle($request, Closure $next)
     {
-        $email = $request->input('email');
-        $test = bcrypt("test");
+        $key = app('request')->header('key');
+        $secret = app('request')->header('secret');
 
-        if (Hash::check('test', $test)) {
-            echo "matched";
-        }
-        die();
+        if($key){
+            $sub = ApiSubscriber::where('email', $key)->first();
 
-        $password = app('hash')->make($request->input('password'));
+            if (!Hash::check($secret, $sub->password)) {
+                return response('Invalid API login credentials!', 401);
+            }
 
-        echo $email. " ".$password;die();
-        $sub = ApiSubscriber::where('email', $email)
-            ->where('password', $password)->first();
-        if (!$sub) {
+        } else {
             return response('Invalid API login credentials!', 401);
         }
-
 
         return $next($request);
     }

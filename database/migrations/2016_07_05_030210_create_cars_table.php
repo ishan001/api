@@ -39,6 +39,9 @@ class CreateCarsTable extends Migration
             $table->integer('post_code')->unsigned();
             $table->integer('city_id')->unsigned();
             $table->text('description');
+            $table->boolean('active');
+            $table->boolean('featured');
+
 
             $table->timestamps();
 

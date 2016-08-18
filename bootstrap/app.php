@@ -72,7 +72,7 @@ $app->singleton(
 //     // Laravel\Lumen\Http\Middleware\VerifyCsrfToken::class,
      Barryvdh\Cors\HandleCors::class,
      Barryvdh\Cors\HandlePreflightSimple::class,
-     App\Http\Middleware\SubscriberAuthMiddleware::class
+
  ]);
 
  $app->routeMiddleware([
